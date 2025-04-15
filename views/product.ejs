@@ -1,0 +1,21 @@
+var description = require("../models/Product").description;
+var name = require("../models/Product").name;
+var name = require("../models/Product").name;
+<h1><%= name %></h1>
+<div><%= description %></div>
+<button onclick="deleteProduct('<%= name %>')">Delete</button>
+
+<script>
+    function deleteProduct(name) {
+        fetch(`/products/${name}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "/products";
+                }
+            });
+    }
+</script>
+<!---->
